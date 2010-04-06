@@ -60,6 +60,16 @@ module Typhoeus
       end
     end
 
+    def clear_hydra_callbacks!
+      if hydra.respond_to?(:clear_cache_callbacks)
+        hydra.clear_cache_callbacks
+      else
+        # you like that? do you?!?!
+        hydra.instance_variable_set("@cache_setter", nil)
+        hydra.instance_variable_set("@cache_getter", nil)
+      end
+    end
+
     def clear_cache!
       @responses = {}
     end
