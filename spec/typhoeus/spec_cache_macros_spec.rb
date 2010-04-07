@@ -19,6 +19,7 @@ describe Typhoeus::SpecCacheMacros do
       self.should_receive(:after).
         with(:all).
         and_yield
+      self.should_receive(:describe).and_yield
 
       @value_to_modify = nil
       block_to_run = lambda { |hydra|

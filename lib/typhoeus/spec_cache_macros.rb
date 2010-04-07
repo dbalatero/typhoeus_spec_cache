@@ -9,19 +9,21 @@ module Typhoeus
 
     module ClassMethods
       def typhoeus_spec_cache(cache_path, &block)
-        hydra = Typhoeus::Hydra.new
-        cache = SpecCache.new(hydra, cache_path)
+        describe "HTTP cache suite for #{cache_path}" do
+          hydra = Typhoeus::Hydra.new
+          cache = SpecCache.new(hydra, cache_path)
 
-        before(:each) do
-          stub_hydra(hydra)
-        end
+          before(:each) do
+            stub_hydra(hydra)
+          end
 
-        yield hydra
+          yield hydra
 
-        after(:all) do
-          cache.remove_unnecessary_cache_files!
-          cache.dump_cache_fixtures!
-          cache.clear_hydra_callbacks!
+          after(:all) do
+            cache.remove_unnecessary_cache_files!
+            cache.dump_cache_fixtures!
+            cache.clear_hydra_callbacks!
+          end
         end
       end
     end

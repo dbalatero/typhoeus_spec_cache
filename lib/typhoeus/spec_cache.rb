@@ -55,8 +55,11 @@ module Typhoeus
     # Dumps out any cached items to disk.
     def dump_cache_fixtures!
       responses.each do |cache_key, response|
-        File.open(filepath_for(cache_key), "wb") do |fp|
-          fp.write(Marshal.dump(response))
+        path = filepath_for(cache_key)
+        unless File.exist?(path)
+          File.open(path, "wb") do |fp|
+            fp.write(Marshal.dump(response))
+          end
         end
       end
     end
