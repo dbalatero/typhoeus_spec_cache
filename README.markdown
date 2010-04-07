@@ -1,10 +1,12 @@
-= typhoeus_spec_cache
+typhoeus\_spec\_cache
+-------------------
 
 Typhoeus is a great frontend to Curl/Curl::Multi. However, if you have a large spec suite that hits a number of external HTTP resources, you will quickly find yourself getting tired of caching all those resources by hand! Trust me. No seriously, I hate doing this by hand.
 
-Thanks to [Paul Dix](http://github.com/pauldix) for writing Typhoeus.
+Thanks to [Paul Dix](http://github.com/pauldix) for writing Typhoeus!
 
-== Installation
+Installation
+------------
 
     sudo gem install typhoeus_spec_cache
 
@@ -19,11 +21,12 @@ And add these two lines to your `Spec::Runner.configure` block in `spec/spec_hel
       config.extend(Typhoeus::SpecCacheMacros::ClassMethods)
     end
 
-== Usage
+Usage
+-----
 
 In any specs that hit HTTP via `Typhoeus::Hydra`, wrap them in a `typhoeus_spec_cache` block:
 
-    describe "expensive HTTP calls" do
+    describe "making 30 expensive HTTP calls" do
       typhoeus_spec_cache("spec/cache/mycache") do |hydra|
         it "should get 10 URLs" do
           result = fetch_urls(10)
@@ -43,7 +46,13 @@ Create the cache directory:
 
 On the first run of these two specs, Typhoeus will make 30 live HTTP requests. These will then be dumped out to `.cache` files in `spec/cache/mycache`, and used on subsequent runs, avoiding any future HTTP calls.
 
-== Auto-managing of cache files
+Auto-stubbing of Hydra
+----------------------
+
+Calling `typhoeus_spec_cache` automatically stubs out calls to Typhoeus::Hydra.new with a single shared Hydra object.
+
+Auto-managing of cache files
+----------------------------
 
 If the URLs your code hits ever changes, the `typhoeus_spec_cache` wrapper is smart about handling your cache. It will:
 
@@ -52,7 +61,8 @@ If the URLs your code hits ever changes, the `typhoeus_spec_cache` wrapper is sm
 
 This way, your cache directory will contain exactly the `.cache` files you need, and no more.
 
-== Note on Patches/Pull Requests
+Note on Patches/Pull Requests
+-----------------------------
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -62,6 +72,7 @@ This way, your cache directory will contain exactly the `.cache` files you need,
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+Copyright
+---------
 
 Copyright (c) 2010 David Balatero. See LICENSE for details.
