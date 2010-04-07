@@ -33,7 +33,7 @@ On the first run of these two specs, Typhoeus will make 30 live HTTP requests. T
 Auto-stubbing of Hydra
 ----------------------
 
-Calling `typhoeus_spec_cache` automatically stubs out calls to Typhoeus::Hydra.new with a single shared Hydra object.
+Calling `typhoeus_spec_cache` automatically stubs out calls to `Typhoeus::Hydra#new` with a single shared Hydra object.
 
 Auto-managing of cache files
 ----------------------------
