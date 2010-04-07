@@ -1,13 +1,25 @@
 module Typhoeus
   module SpecCacheMacros
-    def typhoeus_spec_cache(hydra, cache_path, &block)
-      cache = SpecCache.new(hydra, cache_path)
+    module InstanceMethods
+      def stub_hydra(hydra)
+        Typhoeus::Hydra.stub(:new).
+          and_return(hydra)
+      end
+    end
 
-      yield block
+    module ClassMethods
+      def typhoeus_spec_cache(cache_path, &block)
+        hydra = Typhoeus::Hydra.new
+        cache = SpecCache.new(hydra, cache_path)
 
-      cache.remove_unnecessary_cache_files!
-      cache.dump_cache_fixtures!
-      cache.clear_hydra_callbacks!
+        yield hydra
+
+        after(:all) do
+          cache.remove_unnecessary_cache_files!
+          cache.dump_cache_fixtures!
+          cache.clear_hydra_callbacks!
+        end
+      end
     end
   end
 end

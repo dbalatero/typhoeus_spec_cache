@@ -2,16 +2,17 @@ module Typhoeus
   class SpecCache
     attr_accessor :responses
     attr_accessor :cache_path
+    attr_reader :hydra
 
     def initialize(hydra, cache_path)
       @responses = {}
       @cache_path = cache_path
 
-      hydra.cache_setter do |request|
+      @hydra = hydra
+      @hydra.cache_setter do |request|
         cache_setter_callback(request)
       end
-
-      hydra.cache_getter do |request|
+      @hydra.cache_getter do |request|
         cache_getter_callback(request)
       end
 

@@ -36,6 +36,12 @@ describe Typhoeus::SpecCache do
     end
   end
 
+  describe "#clear_hydra_callbacks!" do
+    it "should not completely die" do
+      @cache.clear_hydra_callbacks!
+    end
+  end
+
   describe "#read_cache_fixtures!" do
     it "should read in cache fixtures that are dumped out" do
       @cache.cache_setter_callback(@request)
