@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "typhoeus_spec_cache"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A plugin to help you dynamically manage HTTP caching for your specs.}
+    gem.description = %Q{A plugin to help you dynamically manage HTTP caching for your specs.}
     gem.email = "dbalatero@gmail.com"
     gem.homepage = "http://github.com/dbalatero/typhoeus_spec_cache"
     gem.authors = ["David Balatero"]
