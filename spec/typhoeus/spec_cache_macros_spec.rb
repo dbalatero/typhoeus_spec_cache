@@ -12,6 +12,10 @@ describe Typhoeus::SpecCacheMacros do
       @cache.should_receive(:dump_cache_fixtures!).ordered
       @cache.should_receive(:clear_hydra_callbacks!)
 
+      self.should_receive(:before).with(:each).
+        and_yield
+      self.should_receive(:stub_hydra).
+        with(an_instance_of(Typhoeus::Hydra))
       self.should_receive(:after).
         with(:all).
         and_yield

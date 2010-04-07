@@ -12,6 +12,10 @@ module Typhoeus
         hydra = Typhoeus::Hydra.new
         cache = SpecCache.new(hydra, cache_path)
 
+        before(:each) do
+          stub_hydra(hydra)
+        end
+
         yield hydra
 
         after(:all) do
