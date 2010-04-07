@@ -5,22 +5,6 @@ Typhoeus is a great frontend to Curl/Curl::Multi. However, if you have a large s
 
 Thanks to [Paul Dix](http://github.com/pauldix) for writing Typhoeus!
 
-Installation
-------------
-
-    sudo gem install typhoeus_spec_cache
-
-Then, add the following to your spec/spec_helper.rb
-
-    require 'typhoeus_spec_cache'
-
-And add these two lines to your `Spec::Runner.configure` block in `spec/spec_helper.rb`:
-
-    Spec::Runner.configure do |config|
-      config.include(Typhoeus::SpecCacheMacros::InstanceMethods)
-      config.extend(Typhoeus::SpecCacheMacros::ClassMethods)
-    end
-
 Usage
 -----
 
@@ -60,6 +44,22 @@ If the URLs your code hits ever changes, the `typhoeus_spec_cache` wrapper is sm
 * Remove any `.cache` files that aren't needed anymore.
 
 This way, your cache directory will contain exactly the `.cache` files you need, and no more.
+
+Installation
+------------
+
+    sudo gem install typhoeus_spec_cache
+
+Then, add the following to your spec/spec_helper.rb
+
+    require 'typhoeus_spec_cache'
+
+And add these two lines to your `Spec::Runner.configure` block in `spec/spec_helper.rb`:
+
+    Spec::Runner.configure do |config|
+      config.include(Typhoeus::SpecCacheMacros::InstanceMethods)
+      config.extend(Typhoeus::SpecCacheMacros::ClassMethods)
+    end
 
 Note on Patches/Pull Requests
 -----------------------------
