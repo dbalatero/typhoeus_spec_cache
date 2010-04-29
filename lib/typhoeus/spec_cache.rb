@@ -46,7 +46,8 @@ module Typhoeus
 
     # Reads in the cache fixture files to in-memory cache.
     def read_cache_fixtures!
-      cache_files.each do |file|
+      files = cache_files
+      files.each do |file|
         cache_key = get_cache_key_from_filename(file)
         responses[cache_key] = Marshal.load(File.read(file))
       end

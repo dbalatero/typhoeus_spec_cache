@@ -17,7 +17,7 @@ module Typhoeus
             stub_hydra(hydra)
           end
 
-          yield hydra
+          instance_exec(hydra, &block)
 
           after(:all) do
             cache.remove_unnecessary_cache_files!
