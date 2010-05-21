@@ -15,7 +15,7 @@ module Typhoeus
       def typhoeus_spec_cache(cache_path, &block)
         describe "HTTP cache suite for #{cache_path}" do
           hydra = Typhoeus::Hydra.new
-          cache = SpecCache.new(hydra, cache_path)
+          cache = Typhoeus::SpecCache.new(hydra, cache_path)
 
           before(:each) do
             stub_hydra(hydra)
