@@ -32,7 +32,8 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/typhoeus/spec_cache_macros_spec.rb",
-     "spec/typhoeus/spec_cache_spec.rb"
+     "spec/typhoeus/spec_cache_spec.rb",
+     "typhoeus_spec_cache.gemspec"
   ]
   s.homepage = %q{http://github.com/dbalatero/typhoeus_spec_cache}
   s.rdoc_options = ["--charset=UTF-8"]

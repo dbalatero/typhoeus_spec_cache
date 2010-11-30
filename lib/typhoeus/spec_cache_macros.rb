@@ -2,11 +2,11 @@ module Typhoeus
   module SpecCacheMacros
     module InstanceMethods
       def stub_hydra(hydra)
-        Typhoeus::Hydra.stub(:new).
+        Typhoeus::Hydra.stub!(:new).
           and_return(hydra)
 
         # stub out the singleton as well.
-        Typhoeus::Hydra.stub(:hydra).
+        Typhoeus::Hydra.stub!(:hydra).
           and_return(hydra)
       end
     end
